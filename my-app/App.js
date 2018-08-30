@@ -1,23 +1,15 @@
 import React from 'react';
-import Counter from './src/Counter';
-import Chat from './src/Chat';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import {Provider} from 'react-redux';
+import reducers from './src/reducers';
 
+import RootNavigation from './RootNavigation';
+import Chat from './src/components/Chat';
 
-const initialState = {
-  counter: 0
-}
-
-const reducer = (state = initialState, action) => {
-  switch(action.type) {
-    case 'INCREASE_COUNTER':
-      return {counter: state.counter + 1};
-    case 'DECREASE_COUNTER':
-      return {counter: state.counter - 1};
-  }
-  return state;
-}
+const reducer = combineReducers({
+  ...reducers,
+  routing: null
+});
 
 const store = createStore(reducer);
 
@@ -25,9 +17,9 @@ export default class App extends React.Component {
   
   render() {
     return (
-      // <Provider store={store}>
-         <Chat />
-      // </Provider>
+      <Provider store={store}>
+         <RootNavigation />
+      </Provider>
     );
   }
 }
