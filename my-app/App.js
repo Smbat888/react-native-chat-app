@@ -1,9 +1,9 @@
 import React from 'react';
 import { createStore, combineReducers } from 'redux';
 import {Provider} from 'react-redux';
-import reducers from './src/reducers';
 
-import RootNavigation from './RootNavigation';
+import reducers from './src/reducers';
+import RootNavigation from './src/navigation/RootNavigation';
 import Chat from './src/components/Chat';
 
 const reducer = combineReducers({
@@ -17,9 +17,9 @@ export default class App extends React.Component {
   
   render() {
     return (
-      <Provider store={store}>
-         <RootNavigation />
-      </Provider>
+        <Provider store={store}>
+            <RootNavigation />
+        </Provider>
     );
   }
 }
