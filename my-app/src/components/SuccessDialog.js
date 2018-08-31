@@ -1,7 +1,10 @@
 import React from 'react';
-import { StyleSheet, TextInput, View, Image, Text, AsyncStorage } from 'react-native';
+import { View, Image } from 'react-native';
 import { LinearGradient } from 'expo';
-import Icon from "react-native-vector-icons/Entypo";
+
+import Constants from '../constants/Constants';
+import Colors from '../constants/Colors';
+import styles from '../constants/Styles';
 
 export default class SuccessDialog extends React.Component {
 
@@ -11,7 +14,7 @@ export default class SuccessDialog extends React.Component {
 
     componentDidMount() {
         setTimeout(() => {
-          this.props.navigation.navigate('Chat');
+          this.props.navigation.navigate(Constants.CHAT_SCREEN);
         }, 1000)
     }
 
@@ -19,26 +22,11 @@ export default class SuccessDialog extends React.Component {
         return (
             <LinearGradient
                 style={styles.gradient}
-                colors={[ '#32ccbc', '#90f7ec']}>
-                <View style={styles.container}>
+                colors={[ Colors.successFirstGradient, Colors.succesSecondGradient]}>
+                <View style={styles.dialogContainer}>
                     <Image style={styles.logoImage} source={require('../../assets/success.png')}/>
                 </View>
             </LinearGradient>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    gradient: {
-        flex: 1
-    },
-    logoImage: {
-        width: 200,
-        height: 200
-    },
-});
